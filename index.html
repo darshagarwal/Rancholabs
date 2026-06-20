@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1.0'>
+<title>Treasure Hunt: Deeper Secrets</title>
+<style>
+body{margin:0;font-family:Segoe UI,sans-serif;background:#07111f;color:#fff}
+header{padding:80px 20px;text-align:center;background:linear-gradient(135deg,#0f172a,#1e3a8a)}
+h1{font-size:3rem}section{padding:50px 20px;max-width:1100px;margin:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card,#game{background:#0f172a;padding:20px;border-radius:16px}
+.btn,.choice{padding:12px;border:none;border-radius:10px;cursor:pointer}
+.btn{background:#f59e0b}.choice{display:block;width:100%;margin:8px 0;background:#1d4ed8;color:#fff}
+.stats{display:flex;gap:10px;flex-wrap:wrap}.stat{background:#111827;padding:10px;border-radius:10px}
+</style>
+</head>
+<body>
+<header><h1>🏴‍☠️ Treasure Hunt: Deeper Secrets</h1><p>Browser adaptation of my Python game.</p></header>
+<section><div class='cards'><div class='card'><h3>Python Project</h3><p>Converted into an interactive web experience.</p></div><div class='card'><h3>Features</h3><p>Luck, HP, Gold, Inventory and Multiple Endings.</p></div></div></section>
+<section id='game'>
+<h2>Play</h2>
+<div class='stats'><div class='stat'>HP: <span id='hp'>100</span></div><div class='stat'>Gold: <span id='gold'>0</span></div><div class='stat'>Luck: <span id='luck'></span></div></div>
+<div id='story'></div><div id='choices'></div>
+</section>
+<script>
+let s={hp:100,gold:0,luck:Math.floor(Math.random()*6)+1,rope:false,torch:false,map:false};
+document.getElementById('luck').textContent=s.luck;
+function u(){hp.textContent=s.hp;gold.textContent=s.gold;}
+function r(t,c){story.innerHTML=t;choices.innerHTML='';c.forEach(x=>{let b=document.createElement('button');b.className='choice';b.textContent=x.t;b.onclick=x.a;choices.appendChild(b)});u();}
+function start(){r('You arrive at a fork in the road.',[{t:'Left Cave',a:left},{t:'Right River',a:right}]);}
+function left(){r('Dark cave ahead.',[{t:'Light Path',a:()=>{s.gold+=50;finale('You found a chest!');}},{t:'Sneak',a:()=>{s.map=true;finale('You discovered a map piece.');}}]);}
+function right(){r('A river blocks your path.',[{t:'Swim',a:()=>{s.hp-=10;finale('You reach the other side.');}},{t:'Search',a:()=>{s.rope=true;s.gold+=15;finale('You found rope and coins.');}}]);}
+function finale(msg){r(msg,[{t:'Bridge',a:bridge},{t:'Trail',a:trail}]);}
+function bridge(){if(s.rope){s.gold+=120;end('Master Explorer!')}else end('Bridge collapses!');}
+function trail(){if(s.map){s.gold+=90;end('Cartographer Fortune!')}else end('Small treasure found.');}
+function end(m){let score=s.gold+Math.floor(s.hp/2);r('<h3>'+m+'</h3><p>Score: '+score+'</p>',[{t:'Play Again',a:()=>location.reload()}]);}
+start();
+</script>
+</body></html>

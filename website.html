@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancholabs AI - Project Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 2rem;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 60px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Features */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Highlights */
+        .highlights {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .highlights h2 {
+            color: white;
+        }
+
+        .highlights-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .highlight-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: #f8f9fa;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 3px solid #667eea;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+        }
+
+        .timeline-item h4 {
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .contact-item p {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#highlights">Highlights</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Rancholabs AI</h1>
+        <p>Cutting-edge AI and technology solutions built with innovation and expertise</p>
+        <button class="cta-button">Explore Projects</button>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About This Project</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Building the Future</h3>
+                <p>This is a comprehensive showcase of innovative projects built during my camp program. I've focused on creating practical, real-world solutions that combine theoretical knowledge with hands-on implementation.</p>
+                <p>Each project demonstrates my expertise in AI, web development, data science, and problem-solving. These solutions showcase how technology can be leveraged to create meaningful impact.</p>
+            </div>
+            <div>
+                <p style="font-size: 4rem; text-align: center; color: #667eea;">💡</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>My Projects</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI & ML Solutions</h3>
+                <p>Machine learning models and AI applications designed to solve complex problems with intelligent automation.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💻</div>
+                <h3>Web Applications</h3>
+                <p>Modern, responsive web applications built with latest technologies for seamless user experience.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Data Analytics</h3>
+                <p>Comprehensive data analysis and visualization tools that transform raw data into actionable insights.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Innovation & Impact</h3>
+                <p>Creative solutions addressing real-world challenges with practical, scalable implementations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights" id="highlights">
+        <h2>Camp Highlights</h2>
+        <div class="highlights-list">
+            <div class="highlight-item">
+                <h4>✓ Technical Excellence</h4>
+                <p>High-quality code and best practices implemented across all projects</p>
+            </div>
+            <div class="highlight-item">
+                <h4>✓ Real-World Impact</h4>
+                <p>Projects designed to solve actual problems with practical, scalable solutions</p>
+            </div>
+            <div class="highlight-item">
+                <h4>✓ Innovation Focus</h4>
+                <p>Cutting-edge technologies and creative approaches to problem-solving</p>
+            </div>
+            <div class="highlight-item">
+                <h4>✓ Full Stack Expertise</h4>
+                <p>End-to-end project implementation from concept to deployment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="timeline" id="schedule">
+        <h2>Camp Schedule</h2>
+        <div class="timeline-item">
+            <h4>Phase 1: Planning & Design</h4>
+            <p>Conceptualization and architectural design of projects with clear objectives and deliverables.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Phase 2: Core Development</h4>
+            <p>Building core features and implementing advanced algorithms with efficient code practices.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Phase 3: Integration & Testing</h4>
+            <p>Integration of components, rigorous testing, and optimization for performance.</p>
+        </div>
+        <div class="timeline-item">
+            <h4>Phase 4: Deployment & Showcase</h4>
+            <p>Final deployment, documentation, and presentation of completed projects with insights.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Let's Connect</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>📧 Email</h4>
+                <p>hello@rancholabs.dev</p>
+            </div>
+            <div class="contact-item">
+                <h4>🔗 GitHub</h4>
+                <p>@rancholabs-ai</p>
+            </div>
+            <div class="contact-item">
+                <h4>💼 Portfolio</h4>
+                <p>rancholabs.dev</p>
+            </div>
+        </div>
+        <button class="cta-button" style="margin-top: 2rem;">View My Work</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Rancholabs AI. All rights reserved. | Built with passion and innovation</p>
+    </footer>
+</body>
+</html>
